@@ -8,9 +8,8 @@ case ${1} in
                 case ${2} in
                         arm)
                                 # awk is probably overkill....
-                                /usr/local/sbin/rock64_health.sh | awk '/CPU freq/{print "frequency(45)=" $4 * 1000000}'
-                                #value=`/usr/local/sbin/rock64_health.sh | awk '/CPU freq/{print $4 * 1000000}'`
-                                #echo 'frequency(45)='${value}
+				value=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq | awk '{print $1 * 1000}'`
+                                echo 'frequency(45)='${value}
                                 exit
                         ;;
                         core)
@@ -24,8 +23,7 @@ case ${1} in
                 ;;
         measure_temp)
                 # awk is probably overkill....
-                #/usr/local/sbin/rock64_health.sh | awk '/SoC Temp/{print $4 "\\\'C"}'
-                value=`/usr/local/sbin/rock64_health.sh | awk '/SoC Temp/{print $4}'`
+                value=`cat /sys/class/thermal/thermal_zone0/temp | awk '{print $1 / 1000}'`
                 echo 'temp='${value}"'C"
                 exit
                 ;;
@@ -48,14 +46,18 @@ case ${1} in
 esac
 
 
+exit
+# remove/comment out exit about for debug logging
+
 # if we got here, unrecognized parameter
 # log it for debugging purposes
 
 # on this device /var/log is ramfs folder2ram
 LOG=/var/log/vcgencmd.log
+LOG=/tmp/vcgencmd.log
 
 
 date >> ${LOG}
-echo ${*} >> ${LOG}
+echo PARAM ${*} PARAM >> ${LOG}
 echo '=============' >> ${LOG}
 
