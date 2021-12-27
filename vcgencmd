@@ -23,7 +23,8 @@ case ${1} in
                 ;;
         measure_temp)
                 # awk is probably overkill....
-                value=`cat /sys/class/thermal/thermal_zone0/temp | awk '{print $1 / 1000}'`
+                value=`cat /sys/class/thermal/thermal_zone0/temp | awk '{printf "%.3f\n", $1 / 1000}'`
+                # NOTE RasPi Check expects floating point result, integer result displays as 0 degrees in RasPi Check v1.8.12
                 echo 'temp='${value}"'C"
                 exit
                 ;;
@@ -48,6 +49,9 @@ esac
 
 exit
 # remove/comment out exit about for debug logging
+# NOTE may need allow permissions on file:
+#	sudo chmod a+w /var/log/vcgencmd.log
+
 
 # if we got here, unrecognized parameter
 # log it for debugging purposes
@@ -58,6 +62,8 @@ LOG=/tmp/vcgencmd.log
 
 
 date >> ${LOG}
-echo PARAM ${*} PARAM >> ${LOG}
+echo PARAM star ${*} PARAM >> ${LOG}
+echo PARAM one ${1} PARAM >> ${LOG}
+echo PARAM two ${2} PARAM >> ${LOG}
 echo '=============' >> ${LOG}
 
