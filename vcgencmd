@@ -39,9 +39,19 @@ case ${1} in
                 esac
                 ;;
         version)
+                # kern will pobably get truncated in raspicheck output
+                # appears to trucate about 31 characters
+                # but will truncate first word and not the end two?
+                kern=`uname -r|sed 's/-/_/'`
+                arch=`uname -i`
+                board=`grep BOARD= /etc/*elease* |head -1 |cut -d= -f2`
                 echo 'Nov  4 2018 16:31:07'
-                echo 'Copyright (c) 2012 rock64'
-                echo 'version rock64_TODO (clean) (release)'
+                echo 'Copyright (c) 2020 clach04'
+                #echo 'version rock64_TODO (clean) (release)'
+
+                # custom format, to get something useful out
+                #echo "version ${kern} (${arch}) (${board})"
+                echo "version ${kern} (${arch})"
                 exit
                 ;;
 esac
