@@ -1,4 +1,4 @@
-# rock64_vcgencmd
+# Fake vcgencmd for generic Linux, Armbian, Odroid and Rock64
 
 Shell script vcgencmd partial clone for rock64 SBC to allow Raspberry Pi tools/scripts to run unmodified on rock64
 Works with Armbian (and probably works with x86 too).
