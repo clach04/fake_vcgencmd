@@ -5,6 +5,8 @@ Works with Armbian (and probably works with x86 too).
 
 Works with https://github.com/eidottermihi/rpicheck
 
+For Armbian can use script as-is or check out https://github.com/armbian/build/pull/5095
+
 Install vcgencmd into /usr/bin/vcgencmd and set execute bit. Example from
 source checkout:
 
