@@ -1,6 +1,6 @@
 #!/bin/sh
 # try and keep this pure bourne shell
-# minimal clone of raspberry tool vcgencmd - for use with Android rpicheck and rock64 SBC
+# minimal clone of raspberry tool vcgencmd - for use with Android rpicheck on generic Linux, Armbian, Odroid, Pine64, Rock64 and other SBCs
 
 command=$1
 case ${1} in
