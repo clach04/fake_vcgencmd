@@ -29,3 +29,26 @@ Install over the web:
     vcgencmd measure_volts core  # this is faked out and incorrect, just enough to satisfy rpicheck
     vcgencmd measure_clock core  # this is faked out and incorrect, just enough to satisfy rpicheck
  
+## Adding support for new parameters
+
+Add the following to the end of the script `vcgencmd` for quick and easy debug logs:
+
+    exit
+    # remove/comment out exit about for debug logging
+    # NOTE may need allow permissions on file:
+    #	sudo chmod a+w /var/log/vcgencmd.log
+
+
+    # if we got here, unrecognized parameter
+    # log it for debugging purposes
+
+    # on this device /var/log is ramfs folder2ram
+    LOG=/var/log/vcgencmd.log
+    LOG=/tmp/vcgencmd.log
+
+
+    date >> ${LOG}
+    echo PARAM star ${*} PARAM >> ${LOG}
+    echo PARAM one ${1} PARAM >> ${LOG}
+    echo PARAM two ${2} PARAM >> ${LOG}
+    echo '=============' >> ${LOG}

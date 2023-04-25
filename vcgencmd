@@ -55,25 +55,3 @@ case ${1} in
                 exit
                 ;;
 esac
-
-
-exit
-# remove/comment out exit about for debug logging
-# NOTE may need allow permissions on file:
-#	sudo chmod a+w /var/log/vcgencmd.log
-
-
-# if we got here, unrecognized parameter
-# log it for debugging purposes
-
-# on this device /var/log is ramfs folder2ram
-LOG=/var/log/vcgencmd.log
-LOG=/tmp/vcgencmd.log
-
-
-date >> ${LOG}
-echo PARAM star ${*} PARAM >> ${LOG}
-echo PARAM one ${1} PARAM >> ${LOG}
-echo PARAM two ${2} PARAM >> ${LOG}
-echo '=============' >> ${LOG}
-
