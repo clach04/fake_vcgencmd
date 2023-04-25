@@ -4,54 +4,54 @@
 
 command=$1
 case ${1} in
-        measure_clock)
-                case ${2} in
-                        arm)
-                                # awk is probably overkill....
-                                value=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq | awk '{print $1 * 1000}'`
-                                echo 'frequency(45)='${value}
-                                exit
-                        ;;
-                        core)
-                                value=0  # TODO / FIXME
-                                echo 'frequency(1)='${value}
-                                exit
-                        ;;
-                # TODO anything else thrown an error/debug
-                esac
-                exit
-                ;;
-        measure_temp)
+    measure_clock)
+        case ${2} in
+            arm)
                 # awk is probably overkill....
-                value=`cat /sys/class/thermal/thermal_zone0/temp | awk '{printf "%.3f\n", $1 / 1000}'`
-                # NOTE RasPi Check expects floating point result, integer result displays as 0 degrees in RasPi Check v1.8.12
-                echo 'temp='${value}"'C"
+                value=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq | awk '{print $1 * 1000}'`
+                echo 'frequency(45)='${value}
                 exit
-                ;;
-        measure_volts)
-                case ${2} in
-                        core)
-                                value=0  # TODO / FIXME
-                                echo 'volt='${value}'.0000V'
-                                exit
-                        ;;
-                # TODO anything else thrown an error/debug
-                esac
-                ;;
-        version)
-                # kern will pobably get truncated in raspicheck output
-                # appears to trucate about 31 characters
-                # but will truncate first word and not the end two?
-                kern=`uname -r|sed 's/-/_/'`
-                arch=`uname -i`
-                board=`grep BOARD= /etc/*elease* |head -1 |cut -d= -f2`
-                echo 'Nov  4 2018 16:31:07'
-                echo 'Copyright (c) 2020 clach04'
-                #echo 'version rock64_TODO (clean) (release)'
+            ;;
+            core)
+                value=0  # TODO / FIXME
+                echo 'frequency(1)='${value}
+                exit
+            ;;
+        # TODO anything else thrown an error/debug
+        esac
+        exit
+        ;;
+    measure_temp)
+        # awk is probably overkill....
+        value=`cat /sys/class/thermal/thermal_zone0/temp | awk '{printf "%.3f\n", $1 / 1000}'`
+        # NOTE RasPi Check expects floating point result, integer result displays as 0 degrees in RasPi Check v1.8.12
+        echo 'temp='${value}"'C"
+        exit
+        ;;
+    measure_volts)
+        case ${2} in
+            core)
+                value=0  # TODO / FIXME
+                echo 'volt='${value}'.0000V'
+                exit
+            ;;
+        # TODO anything else thrown an error/debug
+        esac
+        ;;
+    version)
+        # kern will pobably get truncated in raspicheck output
+        # appears to trucate about 31 characters
+        # but will truncate first word and not the end two?
+        kern=`uname -r|sed 's/-/_/'`
+        arch=`uname -i`
+        board=`grep BOARD= /etc/*elease* |head -1 |cut -d= -f2`
+        echo 'Nov  4 2018 16:31:07'
+        echo 'Copyright (c) 2020 clach04'
+        #echo 'version rock64_TODO (clean) (release)'
 
-                # custom format, to get something useful out
-                #echo "version ${kern} (${arch}) (${board})"
-                echo "version ${kern} (${arch})"
-                exit
-                ;;
+        # custom format, to get something useful out
+        #echo "version ${kern} (${arch}) (${board})"
+        echo "version ${kern} (${arch})"
+        exit
+        ;;
 esac
