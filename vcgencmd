@@ -1,6 +1,10 @@
 #!/bin/sh
 # try and keep this pure bourne shell
-# minimal clone of raspberry tool vcgencmd - for use with Android rpicheck on generic Linux, Armbian, Odroid, Pine64, Rock64 and other SBCs
+# minimal clone of raspberry tool vcgencmd
+# for use with Android rpicheck on;
+#   Generic Linux, Armbian, Odroid, Pine64, Rock64 and other SBCs
+# Does not fully implement Raspberry Pi version, silently exits
+# on unhandled parameters. See README.md for debugging tips.
 
 command=$1
 case ${1} in
