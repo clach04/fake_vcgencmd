@@ -8,7 +8,7 @@ case ${1} in
                 case ${2} in
                         arm)
                                 # awk is probably overkill....
-				value=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq | awk '{print $1 * 1000}'`
+                                value=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq | awk '{print $1 * 1000}'`
                                 echo 'frequency(45)='${value}
                                 exit
                         ;;
