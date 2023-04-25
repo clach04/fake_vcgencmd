@@ -1,4 +1,6 @@
 #!/bin/sh
+# -*- coding: us-ascii -*-
+# vim:ts=4:sw=4:softtabstop=4:smarttab:expandtab
 # try and keep this pure bourne shell
 # minimal clone of raspberry tool vcgencmd
 # for use with Android rpicheck on;
