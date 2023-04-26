@@ -5,7 +5,12 @@ unmodified on SBCs. Works with Armbian (and probably works with x86 too).
 
 Works with Android app https://github.com/eidottermihi/rpicheck
 
-For Armbian can use script as-is or check out https://github.com/armbian/build/pull/5095
+Some Armbian [builds](https://github.com/armbian/build/tree/main/config/boards)
+already include this script. However, the script can be used as-is on many
+systems. In case Armbian does not include this script in their build for your
+board, but you have tested that this script works properly, you can
+[request Armbian](https://github.com/armbian/build/issues) to include it for
+ your board.
 
 Install vcgencmd into /usr/bin/vcgencmd and set execute bit. Example from
 source checkout:
